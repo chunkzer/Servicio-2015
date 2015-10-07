@@ -1,0 +1,43 @@
+<div class="col-md-12" id="login-form">
+
+  <div class="col-md-3"></div>
+
+  <div class="col-md-6">
+    <form class="form-horizontal" ng-submit="doLogin()">
+      <fieldset>
+
+      <!-- Form Name -->
+     <legend>Login</legend>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="username">Username</label>
+        <div class="col-md-4">
+          <input id="username" name="username" ng-model="username"
+            type="text" placeholder="" class="form-control input-md" required="">
+        </div>
+      </div>
+
+      <!-- Password input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="password">Password</label>
+        <div class="col-md-4">
+          <input id="password" name="password" ng-model="password"
+            type="password" placeholder="" class="form-control input-md" required="">
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="col-md-12">
+          <div class="col-md-4"></div>
+          <button id="login" name="login" class="col-md-4 btn btn-warning">Login</button>
+          <div class="col-md-4"></div>
+      </div>
+
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="col-md-3"></div>
+
+</div>

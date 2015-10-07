@@ -1,0 +1,4 @@
+<div ng-show="loadingCandidates" class="alert alert-info no-candidates" role="alert">Loading candidates...</div>
+<div ng-hide="candidates.length || loadingCandidates" class="alert alert-warning no-candidates" role="alert">There are no candidates yet.</div>
+
+<candidate-item ng-repeat="candidate in candidates" candidate="candidate"></candidate-item>
