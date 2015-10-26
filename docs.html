@@ -69,21 +69,29 @@
 
 		  <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 style="color:white;" class="section-heading">Envia tus documentos</h2>
+                    Todos imagenes.
                     <hr class="light">
                     <form style="color: white;" class="form-horizontal">
                         <fieldset>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Acta de Nacimiento (imagen)</label>
+                                <label class="col-md-4 control-label" for="textinput">Acta de Nacimiento</label>
                                 <div class="col-md-6">
-                                    <input id="textinput" name="textinput" type="file" placeholder="" class="form-control input-md">
+                                    <input disabled id="textinput1" name="textinput" type="file" placeholder="" class="form-control input-md">
                                 </div>
+                                <span id="a1"></span>
                             </div>
+                            <script>
+                                if (document.getElementById("textinput1").disabled){
+                                    document.getElementById("textinput1").setAttribute("title", "Ya has enviado este documento");
+                                    document.getElementById("a1").setAttribute("class", "glyphicon glyphicon-ok");
+                                }
+                            </script>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Credencial Escolar (imagen)</label>
+                                <label class="col-md-4 control-label" for="textinput">Credencial Escolar</label>
                                 <div class="col-md-6">
                                     <input id="textinput" name="textinput" type="file" placeholder="" class="form-control input-md">
                                 </div>
