@@ -1,0 +1,91 @@
+{% extends "base.html"%}
+{% block title %} Documentos {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<section class="bg-primary" id="algo">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Envia tus documentos</h2>
+                <p>Todos imagenes</p>
+                <hr class="light">
+                <form action="/files" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <fieldset>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Acta de Nacimiento</label>
+                            <div class="col-md-6">
+                                <input id="textinput1" name="acta" type="file" placeholder="" class="form-control input-md" required>
+                            </div>
+                            <span id="a1"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Credencial escolar (vigente)</label>
+                            <div class="col-md-6">
+                                <input id="textinput1" name="cred" type="file" placeholder="" class="form-control input-md" required>
+                            </div>
+                            <span id="a1"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Fotografia personal</label>
+                            <div class="col-md-6">
+                                <input id="textinput1" name="foto" type="file" placeholder="" class="form-control input-md" required>
+                            </div>
+                            <span id="a1"></span>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton"></label>
+                            <div class="col-md-4">
+                                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="bg-primary" id="algo" style="padding-top:2%; background-color: rgba(0,0,0,0); margin-top:-17%;">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Documentos ya enviados</h2>
+                <hr class="light">
+                <table class="table">
+                </table>
+                {% for key, value in datos.items() %}
+                <tr>
+                    <td>
+                        <b>{{ key }}:</b>
+                    </td>
+                    {% if value != '' %}
+                        <td>
+                            <div class="thumbnail">
+                                <img src="../{{ value }}" alt="">
+                            </div>
+                        </td>
+                    {% else %}
+                        <p>No has subido el archivo correspondiente</p>
+                    {% endif %}
+                    <br>
+                </tr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% if file_uploaded == 'True' %}
+<script type="text/javascript">
+    alert("Archivo subido exitosamente.");
+</script>
+{% endif %}
+{% endblock %}

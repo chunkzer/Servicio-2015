@@ -1,0 +1,83 @@
+{% extends "base.html"%}
+{% block title %} Estudiantes inscritos {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<section align='center'>
+    <div class="container">
+    <div class="page-header">
+        <h2>{{ user.name }}</h2>
+    </div>
+    <p><b>Edad:</b> {{ user.edad }}</p>
+    <p><b>Correo:</b> {{ user.email }}</p>
+    <p><b>CURP:</b> {{ user.curp }}</p>
+    <p><b>Escuela:</b> {{ user.escuela }}</p>
+    <p><b>Ciudad:</b> {{ user.ciudad }}</p>
+    <p><b>Concursos inscrito:</b> {{ user.concursos }}</p>
+    <p><b>Documentos:</b></p>
+    <p>Acta</p>
+    <form action="{{ url_for('calificar', estudiante=user.email) }}" role="form" method="post">
+        <fieldset>
+            {% if user.acta != '' %}
+                <div class="thumbnail"><img src="../{{ user.acta }}" alt=""></div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label><input type="radio" name="radio_acta" value="1" required>
+                            Aceptar documento
+                            <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> -->
+                        </label>
+                        <label><input type="radio" name="radio_acta" value="2">
+                            <!-- <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> -->
+                            Rechazar documento
+                        </label>
+                    </div>
+                </div>
+                <br>
+            {% else %}
+                <p>El alumno no ha subido este documento aun</p>
+            {% endif %}
+            <p>Credencial</p>
+            {% if user.cred != '' %}
+                <div class="thumbnail"><img src="../{{ user.cred }}" alt=""></div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label><input type="radio" name="radio_cred" value="1" required>
+                            Aceptar documento
+                            <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> -->
+                        </label>
+                        <label><input type="radio" name="radio_cred" value="2">
+                            Rechazar documento
+                            <!-- <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> -->
+                        </label>
+                    </div>
+                </div>
+                <br>
+            {% else %}
+                <p>El alumno no ha subido este documento aun</p>
+            {% endif %}
+            <p>Fotografia personal</p>
+            {% if user.foto != '' %}
+                <div class="thumbnail"><img src="../{{ user.foto }}" alt=""></div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label><input type="radio" name="radio_foto" value="1" required>
+                            Aceptar documento
+                            <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> -->
+                        </label>
+                        <label><input type="radio" name="radio_foto" value="2">
+                            Rechazar documento
+                            <!-- <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> -->
+                        </label>
+                    </div>
+                </div>
+                <br>
+            {% else %}
+                <p>El alumno no ha subido este documento aun</p>
+            {% endif %}
+            <button class="btn btn-primary">Enviar</button>
+        </fieldset>
+
+    </form>
+</section>
+{% endblock %}

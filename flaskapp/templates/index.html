@@ -1,0 +1,256 @@
+{% extends "base.html"%}
+{% block title %} Bienvenido {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>Concurso de Matematicas y Fisica<br> Universidad de Sonora</h1>
+                <hr>
+                <p>Concurso regional de fisica y matematicas</p>
+                <a href="#registro" class="btn btn-primary btn-xl page-scroll">Registrate</a>
+                <a href="#iniciar" class="btn btn-primary btn-xl page-scroll">Entrar</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-primary" id="registro">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Registrate al concurso!</h2>
+                    <hr class="light">
+                    <form class="form-horizontal" style="color: #000000;" method="post" action="{{ url_for('registro') }}">
+                        {{ sign_form.csrf_token }}
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend>Ingresa tus datos</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Nombre completo</label>
+                                <div class="col-md-4">
+                                    {{ sign_form.nombre(id="textinput", class="form-control input-md") }}
+                                    {% if sign_form.nombre.errors %}
+                                        {% for error in sign_form.nombre.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">E-mail</label>
+                                <div class="col-md-4">
+                                    {{ sign_form.correo(id="textinput", class="form-control input-md") }}
+                                    {% if sign_form.correo.errors %}
+                                        {% for error in sign_form.correo.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% with messages = get_flashed_messages() %}
+                                        {% if messages %}
+                                            {% for message in messages %}
+                                                {{ message }}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                            </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">CURP</label>
+                                <div class="col-md-4">
+                                    {{ sign_form.curp(id="textinput", class="form-control input-md") }}
+                                    {% if sign_form.curp.errors %}
+                                        {% for error in sign_form.curp.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Escuela de presedencia</label>
+                                <div class="col-md-4">
+                                    {{ sign_form.escuela(id="textinput", class="form-control input-md") }}
+                                    {% if sign_form.escuela.errors %}
+                                        {% for error in sign_form.escuela.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Ciudad de prosedencia</label>
+                                <div class="col-md-4">
+                                    {{ sign_form.ciudad(id="textinput", class="form-control input-md") }}
+                                    {% if sign_form.ciudad.errors %}
+                                        {% for error in sign_form.ciudad.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Edad</label>
+                                <div class="col-md-2">
+                                    {{ sign_form.edad(id="textinput", class="form-control input-md") }}
+                                    {% if sign_form.edad.errors %}
+                                        {% for error in sign_form.edad.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Multiple Checkboxes -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="checkboxes">Eige el concurso en el que deseas participar:</label>
+                                <div class="col-md-4">
+                                    {{ sign_form.concursos(style="text-align:left;") }}
+                                    {% if sign_form.concursos.errors %}
+                                        {% for error in sign_form.concursos.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <!--
+                                    <div class="checkbox">
+                                        <label for="checkboxes-0">
+                                            <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+                                            Matematicas
+                                        </label>
+                            	    </div>
+                                    <div class="checkbox">
+                                        <label for="checkboxes-1">
+                                            <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
+                                            Fisica
+                                        </label>
+                                	</div>
+                                    <div class="checkbox">
+                                        <label for="checkboxes-2">
+                                            <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3">
+                                            Pre-selectivo de fisica
+                                        </label>
+                                	</div>
+                                    -->
+                                </div>
+                            </div>
+
+
+                            <!-- Password input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="passwordinput">Contrasena</label>
+                                <div class="col-md-4">
+                                    {{ sign_form.password(class="form-control input-md") }}
+                                    {% if sign_form.password.errors %}
+                                        {% for error in sign_form.password.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <!-- <input id="passwordinput" name="passwordinput" type="password" placeholder="" class="form-control input-md"> -->
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="singlebutton"></label>
+                                <div class="col-md-4">
+                                    {{ sign_form.submit(class="btn btn-primary", value="Enviar", id="boton_registro") }}
+                                    {% if sign_form.submit.errors %}
+                                        {% for error in sign_form.submit.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <!-- <button id="singlebutton" name="singlebutton" class="btn btn-primary">Enviar</button> -->
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-primary" id="iniciar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Inicia Sesion</h2>
+                    <hr class="light">
+                    <form class="form-horizontal" style="color: #000000;" method="post" action="{{ url_for('index')}}">
+                        {{ form_login.csrf_token }}
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend>Ingresa tus datos</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group" style="color: #000000;">
+                                <label class="col-md-4 control-label" for="textinput">Correo:</label>
+                                <div class="col-md-4">
+                                    {{ form_login.email(id='textinput', class='form-control input-md') }}
+                                    {% if form_login.email.errors %}
+                                        {% for error in form_login.email.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Password input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="passwordinput">Contrasena</label>
+                                <div class="col-md-4">
+                                    {{ form_login.password(id="passwordinput", class="form-control input-md") }}
+                                    {% if form_login.password.errors %}
+                                        {% for error in form_login.password.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="singlebutton"></label>
+                                <div class="col-md-4">
+                                    <button id="singlebutton" name="entrar" class="btn btn-primary" value="Entrar">Entrar</button>
+                                </div>
+                            </div>
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#boton_registro").blur();
+        });
+    </script>
+{% endblock %}

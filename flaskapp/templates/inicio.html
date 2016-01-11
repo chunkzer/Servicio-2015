@@ -1,0 +1,44 @@
+{% extends "base.html"%}
+{% block title %} Inicio {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <section class="bg-primary" id="algo">
+        <div class="container">
+            <div class="row" style="overflow-y:scroll; max-height:500px;">
+
+                <h2 style="color:white;">Archivos del alumno</h2>
+                <img src="img/Calculator.jpg" class="thumbnail center-block" width="50%">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
+                        <span style="color:green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
+                        <span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <img src="img/Calculator.jpg" class="thumbnail center-block" width="50%">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
+                        <span style="color:green;" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
+                        <span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <button type="submit" class="btn <btn-success></btn-success>" name="button">Guardar</button>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
