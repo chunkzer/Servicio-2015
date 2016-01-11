@@ -161,7 +161,10 @@ def calificar(estudiante):
         # mail.send(msg)
     else:
         pass
-    return "Hey " + estudiante
+    return "<script type=\"text/javascript\">\
+            alert(\"Datos revisados. El alumno recibira un correo con las observaciones.\");\
+            window.location.href = '/admin'\
+            </script>"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
