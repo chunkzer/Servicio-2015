@@ -1,32 +1,84 @@
-{% extends "base.html"%}
-{% block title %} Estudiantes inscritos {% endblock %}
-{% block head %}
-    {{ super() }}
-{% endblock %}
-{% block content %}
+{% extends "base.html"%} {% block title %} Estudiantes inscritos {% endblock %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+<script src="static/js/helper.js"></script>
 <section>
     <div class="container">
-        <table class="table table-bordered">
-            <tr><td>Usuario</td><td>Correo</td><td>Estatus</td></tr>
+
+        <div class="row">
+            <form class="form-inline" role="form">
+                <div class="form-group" style="padding-left:15px; padding-bottom:15px;">
+                    <label for="usr">Buscar:</label>
+                    <input type="text" class="form-control" placeholder="Nombre del esutidante" id="usr">
+                    <a style="padding-left:5px;" id="search" href="#">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </form>
+        </div>
+        <table class="table table-striped">
+            <tr id="first_row">
+                <td>Usuario</td>
+                <td>Correo</td>
+                <td>Concurso inscrito</td>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Estatus
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="order_menu" id="Registrado">Registrado</a></li>                            
+                            <li><a href="#" class="order_menu" id="Enviando">Enviando</a></li>
+                            <li><a href="#" class="order_menu" id="Espera">Espera</a></li>
+                            <li><a href="#" class="order_menu" id="Revisado">Revisado</a></li>
+                            <li><a href="#" class="order_menu" id="Listo">Listo</a></li>
+                        </ul>
+                        <a data-toggle="modal" data-target="#status_modal" href="#">
+                            <span class="glyphicon glyphicon-question-sign" ></span>
+                        </a>
+
+                    </div>
+                </td>
+            </tr>
             {% for usuario in usuarios %}
-                <tr>
-                    <td>
-                        <a href="{{ url_for('datos', estudiante=usuario.email) }}">{{ usuario.name }}</a>
-                    </td>
-                    <td>
-                        {{ usuario.email }}
-                    </td>
-                    <td>
-                        {% if usuario.status == 0 %}
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        {% else %}
-                            <span class="glyphicon glyphicon-ok" style="color:orange;" aria-hidden="true"></span>
-                        {% endif %}
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <a href="{{ url_for('datos', estudiante=usuario.email) }}">{{ usuario.name }}</a>
+                </td>
+                <td>
+                    {{ usuario.email }}
+                </td>
+                <td>
+                    {{ usuario.concursos }}
+                </td>
+                <td>
+                    {{ usuario.status }}
+                </td>
+            </tr>
             {% endfor %}
         </table>
     </div>
+    <div id="status_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Definici&oacute;n de estados para la columna 'Estatus':</h4>
+                </div>
+                <div class="modal-body">
+                    <b>Registrado:</b> El alumno se ha registrado en el portal pero a&uacute;n no env&iacute;a sus archivos.<br><br>
+                    <b>Enviando:</b> El alumno subi&oacute; uno o varios archivos.<br><br>
+                    <b>Espera: </b> El alumno subi&oacute; todos sus documentos y esta esperando a que sean revisados.<br><br>
+                    <b>Revisado: </b> Los archivos del alumno fueron revisados. Sin embargo uno o varios archivos fueron rechazados o a&uacute;n tiene documentos pendientes por enviar. <br><br>
+                    <b>Listo: </b> Los archivos del alumno fueron revisados y aprobados. Se complet&oacute; su registro.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </section>
 {% endblock %}

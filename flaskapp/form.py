@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask_wtf import Form
 from wtforms.fields.html5 import EmailField
 from wtforms import IntegerField, StringField, TextField,\
@@ -15,8 +16,8 @@ class SignUpForm(Form):
     escuela = StringField('escuela', [validators.DataRequired(message=u"Introducir escuela")])
     ciudad = StringField('ciudad', [validators.DataRequired(message=u"Introducir ciudad")])
     edad = IntegerField('edad', [validators.DataRequired(message=u"Introducir edad")])
-    concursos = SelectMultipleField(choices=[('Matematicas', 'Matematicas'),\
-            ('Fisica', 'Fisica'), ('Pre-selectivo de fisica', 'Pre-selectivo de fisica')],\
+    concursos = SelectMultipleField(choices=[('Matemáticas'.decode('utf-8'), 'Matemáticas'.decode("utf-8")),\
+            ('Física'.decode('utf-8'), 'Física'.decode("utf-8")), ('Pre-selectivo de física'.decode("utf-8"), 'Pre-selectivo de física'.decode("utf-8"))],\
                 option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
-    password = PasswordField('password', [validators.DataRequired(message=u"Introducir contrasena")])
+    password = PasswordField('password', [validators.DataRequired(message="Introducir contraseña".decode("utf8"))])
     submit = SubmitField('registro')

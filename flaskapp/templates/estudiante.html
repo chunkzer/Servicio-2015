@@ -19,7 +19,12 @@
     <p>Acta</p>
     <form action="{{ url_for('calificar', estudiante=user.email) }}" role="form" method="post">
         <fieldset>
-            {% if user.acta != '' %}
+            {% if user.acta != '' and user.status_acta == 1 %}
+                <div class="thumbnail"><img src="../{{ user.acta }}" alt=""></div>
+                <p><b>Este documento ya fue revisado y aceptado</b></p>
+            {% elif user.acta == '' %}
+                <p>El alumno no ha subido este documento aun</p>
+            {% else %}
                 <div class="thumbnail"><img src="../{{ user.acta }}" alt=""></div>
                 <div class="form-group">
                     <div class="radio">
@@ -28,36 +33,42 @@
                             <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> -->
                         </label>
                         <label><input type="radio" name="radio_acta" value="2">
-                            <!-- <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> -->
                             Rechazar documento
+                            <!-- <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> -->
                         </label>
                     </div>
                 </div>
                 <br>
-            {% else %}
-                <p>El alumno no ha subido este documento aun</p>
             {% endif %}
             <p>Credencial</p>
-            {% if user.cred != '' %}
+            {% if user.cred != '' and user.status_credencial == 1 %}
                 <div class="thumbnail"><img src="../{{ user.cred }}" alt=""></div>
+                <p><b>Este documento ya fue revisado y aceptado</b></p>
+            {% elif user.cred == '' %}
+                <p>El alumno no ha subido este documento aun</p>
+            {% else %}
+            <div class="thumbnail"><img src="../{{ user.cred }}" alt=""></div>
                 <div class="form-group">
                     <div class="radio">
-                        <label><input type="radio" name="radio_cred" value="1" required>
+                        <label><input type="radio" name="radio_credencial" value="1" required>
                             Aceptar documento
                             <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> -->
                         </label>
-                        <label><input type="radio" name="radio_cred" value="2">
+                        <label><input type="radio" name="radio_credencial" value="2">
                             Rechazar documento
                             <!-- <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> -->
                         </label>
                     </div>
                 </div>
                 <br>
-            {% else %}
-                <p>El alumno no ha subido este documento aun</p>
             {% endif %}
             <p>Fotografia personal</p>
-            {% if user.foto != '' %}
+            {% if user.foto != '' and user.status_foto == 1 %}
+                <div class="thumbnail"><img src="../{{ user.foto }}" alt=""></div>
+                <p><b>Este documento ya fue revisado y aceptado</b></p>
+            {% elif user.foto == '' %}
+                <p>El alumno no ha subido este documento aun</p>
+            {% else %}
                 <div class="thumbnail"><img src="../{{ user.foto }}" alt=""></div>
                 <div class="form-group">
                     <div class="radio">
@@ -72,8 +83,6 @@
                     </div>
                 </div>
                 <br>
-            {% else %}
-                <p>El alumno no ha subido este documento aun</p>
             {% endif %}
             <button class="btn btn-primary">Enviar</button>
         </fieldset>

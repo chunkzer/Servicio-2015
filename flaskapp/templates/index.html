@@ -5,23 +5,24 @@
 {% endblock %}
 
 {% block content %}
+
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1>Concurso de Matematicas y Fisica<br> Universidad de Sonora</h1>
+                <h1>Concurso Regional de F&iacute;sica y Matem&aacute;ticas<br> Universidad de Sonora</h1>
+                <h3>Sistema de Registro al Concurso Regional de F&iacute;sica y Matem&aacute;ticas</h3>
                 <hr>
-                <p>Concurso regional de fisica y matematicas</p>
                 <a href="#registro" class="btn btn-primary btn-xl page-scroll">Registrate</a>
                 <a href="#iniciar" class="btn btn-primary btn-xl page-scroll">Entrar</a>
             </div>
         </div>
     </header>
 
-    <section class="bg-primary" id="registro">
+    <section class="bg-primary" id="registro" style="color:black;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Registrate al concurso!</h2>
+                    <h2 class="section-heading">Reg&iacute;strate al concurso</h2>
                     <hr class="light">
                     <form class="form-horizontal" style="color: #000000;" method="post" action="{{ url_for('registro') }}">
                         {{ sign_form.csrf_token }}
@@ -45,7 +46,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">E-mail</label>
+                                <label class="col-md-4 control-label" for="textinput">Correo electr&oacute;nico</label>
                                 <div class="col-md-4">
                                     {{ sign_form.correo(id="textinput", class="form-control input-md") }}
                                     {% if sign_form.correo.errors %}
@@ -79,7 +80,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Escuela de presedencia</label>
+                                <label class="col-md-4 control-label" for="textinput">Escuela de procedencia</label>
                                 <div class="col-md-4">
                                     {{ sign_form.escuela(id="textinput", class="form-control input-md") }}
                                     {% if sign_form.escuela.errors %}
@@ -93,7 +94,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ciudad de prosedencia</label>
+                                <label class="col-md-4 control-label" for="textinput">Ciudad de procedencia</label>
                                 <div class="col-md-4">
                                     {{ sign_form.ciudad(id="textinput", class="form-control input-md") }}
                                     {% if sign_form.ciudad.errors %}
@@ -119,7 +120,7 @@
 
                             <!-- Multiple Checkboxes -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="checkboxes">Eige el concurso en el que deseas participar:</label>
+                                <label class="col-md-4 control-label" for="checkboxes">Elige el concurso en el que deseas participar:</label>
                                 <div class="col-md-4">
                                     {{ sign_form.concursos(style="text-align:left;") }}
                                     {% if sign_form.concursos.errors %}
@@ -153,7 +154,7 @@
 
                             <!-- Password input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="passwordinput">Contrasena</label>
+                                <label class="col-md-4 control-label" for="passwordinput">Contrase&ntilde;a</label>
                                 <div class="col-md-4">
                                     {{ sign_form.password(class="form-control input-md") }}
                                     {% if sign_form.password.errors %}
@@ -187,11 +188,11 @@
         </div>
     </section>
 
-    <section class="bg-primary" id="iniciar">
+    <section class="bg-primary" id="iniciar" style="color:black; padding-bottom:20%">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Inicia Sesion</h2>
+                    <h2 class="section-heading">Inicia Sesi&oacute;n</h2>
                     <hr class="light">
                     <form class="form-horizontal" style="color: #000000;" method="post" action="{{ url_for('index')}}">
                         {{ form_login.csrf_token }}
@@ -202,7 +203,7 @@
 
                             <!-- Text input-->
                             <div class="form-group" style="color: #000000;">
-                                <label class="col-md-4 control-label" for="textinput">Correo:</label>
+                                <label class="col-md-4 control-label" for="textinput">Correo electr&oacute;nico:</label>
                                 <div class="col-md-4">
                                     {{ form_login.email(id='textinput', class='form-control input-md') }}
                                     {% if form_login.email.errors %}
@@ -215,7 +216,7 @@
 
                             <!-- Password input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="passwordinput">Contrasena</label>
+                                <label class="col-md-4 control-label" for="passwordinput">Contrase&ntilde;a</label>
                                 <div class="col-md-4">
                                     {{ form_login.password(id="passwordinput", class="form-control input-md") }}
                                     {% if form_login.password.errors %}
@@ -233,7 +234,7 @@
                                     <button id="singlebutton" name="entrar" class="btn btn-primary" value="Entrar">Entrar</button>
                                 </div>
                             </div>
-                            {% with messages = get_flashed_messages() %}
+                            {% with messages = get_flashed_messages(category_filter=["error"]) %}
                                 {% if messages %}
                                     {% for message in messages %}
                                         <li>{{ message }}</li>

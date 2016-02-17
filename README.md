@@ -15,7 +15,7 @@
  Notice the **requirements.txt** file is located at the repo folder
 
 * Go to *flaskapp/* folder and run the app with:
->`python app.py runserver`
+>`python __init__.py runserver`
 
 * Open your browser and go to __localhost:5000/__. Enjoy
 
